@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YourWay China Travel — Discover Shanghai</title>
+<meta name="description" content="Shanghai, your way. A love letter to China's most electric city — highlights, itineraries and practical tips for first-time visitors from the US and Europe.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0f1b2d; --ink-soft:#24344d; --cream:#faf6ee; --paper:#fffdf8;
+    --gold:#c19a4b; --gold-deep:#a5823a; --line:#e8e0d0; --muted:#6b7280;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',-apple-system,'Segoe UI',Roboto,sans-serif;color:var(--ink);background:var(--cream);line-height:1.7;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.serif{font-family:'Playfair Display',Georgia,serif;line-height:1.25}
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  section{padding:96px 0}
+
+  /* ---------- nav ---------- */
+  nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,box-shadow .3s}
+  nav.scrolled{background:rgba(250,246,238,.96);backdrop-filter:blur(8px);box-shadow:0 1px 0 var(--line)}
+  nav.scrolled .nav-inner a, nav.scrolled .brand{color:var(--ink)}
+  .nav-inner{max-width:1120px;margin:0 auto;padding:18px 24px;display:flex;align-items:center;justify-content:space-between}
+  .brand{font-family:'Playfair Display',Georgia,serif;font-weight:700;font-size:1.25rem;color:#fff;letter-spacing:.3px;text-decoration:none}
+  .brand span{color:var(--gold)}
+  .nav-links{display:flex;gap:32px;list-style:none}
+  .nav-links a{color:#fff;text-decoration:none;font-size:.92rem;font-weight:500;opacity:.92}
+  .nav-links a:hover{color:var(--gold)}
+  nav.scrolled .nav-links a{color:var(--ink-soft)}
+  .burger{display:none;background:none;border:0;color:#fff;font-size:1.6rem;cursor:pointer}
+  nav.scrolled .burger{color:var(--ink)}
+
+  /* ---------- hero ---------- */
+  .hero{min-height:100svh;display:flex;align-items:flex-end;position:relative;color:#fff;
+    background:url('images/hero-bund.jpg') center/cover no-repeat #0f1b2d}
+  .hero::before{content:'';position:absolute;inset:0;
+    background:linear-gradient(to top,rgba(8,14,26,.82) 0%,rgba(8,14,26,.25) 45%,rgba(8,14,26,.35) 100%)}
+  .hero-inner{position:relative;z-index:1;width:100%;padding:0 24px 110px;max-width:1120px;margin:0 auto}
+  .kicker{display:inline-block;font-size:.78rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+  .hero h1{font-size:clamp(2.6rem,6.5vw,4.8rem);font-weight:700;max-width:13ch}
+  .hero h1 em{font-style:italic;color:var(--gold)}
+  .hero p.lead{margin:22px 0 34px;max-width:56ch;font-size:1.12rem;color:rgba(255,255,255,.88)}
+  .btn{display:inline-block;padding:15px 34px;border-radius:999px;font-weight:600;font-size:.98rem;text-decoration:none;transition:transform .2s,box-shadow .2s;cursor:pointer;border:0}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-gold{background:var(--gold);color:#131c2b}
+  .btn-gold:hover{background:#d3ab5c;box-shadow:0 12px 28px rgba(193,154,75,.35)}
+  .btn-ghost{border:1.5px solid rgba(255,255,255,.7);color:#fff;margin-left:12px;background:transparent}
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+
+  /* ---------- stats ---------- */
+  .stats{background:var(--ink);color:#fff;padding:56px 0}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1120px;margin:0 auto;padding:0 24px}
+  .stat{text-align:center;padding:8px}
+  .stat .num{font-family:'Playfair Display',Georgia,serif;font-size:2.4rem;color:var(--gold);font-weight:700}
+  .stat .lbl{font-size:.85rem;color:rgba(255,255,255,.72);margin-top:6px}
+
+  /* ---------- section headers ---------- */
+  .sec-head{max-width:680px;margin-bottom:56px}
+  .sec-head h2{font-size:clamp(1.9rem,3.6vw,2.7rem);margin:14px 0 16px}
+  .sec-head p{color:var(--muted);font-size:1.05rem}
+
+  /* ---------- highlights ---------- */
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:transform .25s,box-shadow .25s}
+  .card:hover{transform:translateY(-6px);box-shadow:0 24px 48px rgba(15,27,45,.12)}
+  .card img{height:300px;width:100%;object-fit:cover}
+  .card-body{padding:30px 32px 34px}
+  .card-body h3{font-size:1.45rem;margin-bottom:10px}
+  .card-body p{color:var(--muted);font-size:.99rem}
+  .tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);margin-bottom:10px}
+
+  /* ---------- itineraries ---------- */
+  #itineraries{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .tabs{display:flex;gap:12px;margin-bottom:40px;flex-wrap:wrap}
+  .tab{padding:13px 28px;border-radius:999px;border:1.5px solid var(--line);background:transparent;font-weight:600;font-size:.95rem;cursor:pointer;color:var(--ink-soft);transition:all .2s}
+  .tab.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .itin{display:none}
+  .itin.active{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+  .day{background:var(--cream);border:1px solid var(--line);border-radius:16px;padding:28px}
+  .day .d{font-family:'Playfair Display',Georgia,serif;font-size:1rem;color:var(--gold-deep);font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+  .day h3{font-size:1.3rem;margin:8px 0 14px}
+  .day ul{list-style:none;color:var(--ink-soft);font-size:.95rem}
+  .day li{padding:8px 0 8px 26px;position:relative;border-bottom:1px dashed var(--line)}
+  .day li:last-child{border-bottom:0}
+  .day li::before{content:'→';position:absolute;left:0;color:var(--gold);font-weight:700}
+
+  /* ---------- good to know ---------- */
+  .tips{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .tip{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:30px 28px}
+  .tip .icon{font-size:1.9rem;margin-bottom:14px}
+  .tip h3{font-size:1.18rem;margin-bottom:10px}
+  .tip p{font-size:.94rem;color:var(--muted)}
+  .tip p strong{color:var(--ink)}
+  .fine{margin-top:44px;font-size:.85rem;color:var(--muted);border-left:3px solid var(--gold);padding-left:18px;max-width:760px}
+
+  /* ---------- cta ---------- */
+  .cta{background:linear-gradient(135deg,#0f1b2d 0%,#1d2f4d 100%);color:#fff;text-align:center;border-radius:24px;padding:80px 32px;position:relative;overflow:hidden}
+  .cta::after{content:'上 海';position:absolute;right:-10px;bottom:-38px;font-family:'Playfair Display',serif;font-size:11rem;color:rgba(255,255,255,.05);line-height:1;pointer-events:none}
+  .cta h2{font-size:clamp(1.9rem,3.8vw,2.8rem);margin:14px 0 16px;position:relative;z-index:1}
+  .cta p{color:rgba(255,255,255,.75);max-width:56ch;margin:0 auto 34px;position:relative;z-index:1}
+  .cta .btn{position:relative;z-index:1}
+
+  /* ---------- footer ---------- */
+  footer{padding:44px 0;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line)}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+  footer .brand{color:var(--ink);font-size:1.05rem}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:860px){
+    .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--cream);flex-direction:column;gap:0;box-shadow:0 12px 24px rgba(0,0,0,.1)}
+    .nav-links.open{display:flex}
+    .nav-links a{color:var(--ink)!important;padding:16px 24px;border-top:1px solid var(--line)}
+    .burger{display:block}
+    .cards,.tips{grid-template-columns:1fr}
+    .stats-grid{grid-template-columns:repeat(2,1fr)}
+    section{padding:64px 0}
+    .hero-inner{padding-bottom:80px}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">YourWay <span>China Travel</span></a>
+    <button class="burger" id="burger" aria-label="Menu">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#highlights">Highlights</a></li>
+      <li><a href="#itineraries">Itineraries</a></li>
+      <li><a href="#good-to-know">Good to Know</a></li>
+      <li><a href="#plan">Plan Your Trip</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-inner">
+    <span class="kicker">Shanghai · China</span>
+    <h1>Shanghai, <em>your way.</em></h1>
+    <p class="lead">Where 1920s lanes meet a 22nd-century skyline. Come taste the soup dumplings, wander the old alleys, and get wonderfully lost in China&rsquo;s most electric city.</p>
+    <a class="btn btn-gold" href="#highlights">Explore the city</a>
+    <a class="btn btn-ghost" href="#plan">Plan your visit</a>
+  </div>
+</header>
+
+<div class="stats">
+  <div class="stats-grid">
+    <div class="stat reveal"><div class="num">240h</div><div class="lbl">Visa-free transit for 54 countries</div></div>
+    <div class="stat reveal"><div class="num">431<span style="font-size:1.2rem"> km/h</span></div><div class="lbl">Maglev — the world&rsquo;s fastest train</div></div>
+    <div class="stat reveal"><div class="num">632<span style="font-size:1.2rem"> m</span></div><div class="lbl">Shanghai Tower, China&rsquo;s tallest building</div></div>
+    <div class="stat reveal"><div class="num">800<span style="font-size:1.2rem">+ km</span></div><div class="lbl">Metro — the world&rsquo;s longest network</div></div>
+  </div>
+</div>
+
+<section id="highlights">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Highlights</span>
+      <h2>Four faces of one unforgettable city</h2>
+      <p>Shanghai refuses to be just one thing. Give it a few days and it will show you all of its sides.</p>
+    </div>
+    <div class="cards">
+      <article class="card reveal">
+        <img src="images/hero-bund.jpg" alt="The Bund and Pudong skyline at blue hour" loading="lazy">
+        <div class="card-body">
+          <span class="tag">Iconic</span>
+          <h3>The Bund &amp; Lujiazui</h3>
+          <p>Stand on the historic Bund promenade at dusk and watch the colonial-era facades glow gold while Pudong&rsquo;s towers light up across the river. Then cross over for the observation decks of Shanghai Tower and the Oriental Pearl Tower — the postcard view, in real life.</p>
+        </div>
+      </article>
+      <article class="card reveal">
+        <img src="images/yu-garden.jpg" alt="Yu Garden's zigzag bridge and pavilion" loading="lazy">
+        <div class="card-body">
+          <span class="tag">Heritage</span>
+          <h3>Yu Garden &amp; Old Town</h3>
+          <p>A 400-year-old Ming-dynasty garden of zigzag bridges, koi ponds and carved pavilions, tucked inside the buzzing Old Town bazaar. Come early, then graze your way through the snack streets outside.</p>
+        </div>
+      </article>
+      <article class="card reveal">
+        <img src="images/french-concession.jpg" alt="Leafy street in the French Concession" loading="lazy">
+        <div class="card-body">
+          <span class="tag">Local life</span>
+          <h3>The French Concession</h3>
+          <p>Plane-tree avenues, art-deco villas, hidden cafes and boutiques. This is where Shanghainese go to slow down — rent a bike, follow Wukang Road, and stop wherever the coffee smells good.</p>
+        </div>
+      </article>
+      <article class="card reveal">
+        <img src="images/food-xiaolongbao.jpg" alt="Xiao long bao soup dumplings in a bamboo steamer" loading="lazy">
+        <div class="card-body">
+          <span class="tag">Food</span>
+          <h3>A city you can taste</h3>
+          <p>Xiao long bao soup dumplings, pan-fried sheng jian bao, scallion oil noodles, crab-season everything. Shanghai&rsquo;s food scene runs from century-old breakfast stalls to Michelin-starred dining — bring an appetite.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="itineraries">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Itineraries</span>
+      <h2>How many days do you have?</h2>
+      <p>Two ready-made routes. Steal them, remix them — there is no wrong way to do Shanghai.</p>
+    </div>
+    <div class="tabs reveal">
+      <button class="tab active" data-t="t3">3 days · First-timer&rsquo;s classic</button>
+      <button class="tab" data-t="t5">5 days · The deep dive</button>
+    </div>
+
+    <div class="itin active reveal" id="t3">
+      <div class="day"><div class="d">Day 1</div><h3>Icons &amp; river lights</h3>
+        <ul><li>Morning: Yu Garden &amp; Old Town bazaar</li><li>Afternoon: Nanjing Road walk to the Bund</li><li>Evening: Huangpu River night cruise</li></ul></div>
+      <div class="day"><div class="d">Day 2</div><h3>Old lanes, new art</h3>
+        <ul><li>Morning: French Concession by bike (Wukang Road, Tianzifang)</li><li>Afternoon: Shanghai Museum on People&rsquo;s Square</li><li>Evening: Dinner in Xintiandi&rsquo;s shikumen lanes</li></ul></div>
+      <div class="day"><div class="d">Day 3</div><h3>Future Shanghai</h3>
+        <ul><li>Morning: Shanghai Tower observation deck, Lujiazui</li><li>Afternoon: M50 art district or a tea house break</li><li>Evening: Maglev to Pudong Airport at 431 km/h</li></ul></div>
+    </div>
+
+    <div class="itin reveal" id="t5">
+      <div class="day"><div class="d">Day 1–2</div><h3>The classic, unhurried</h3>
+        <ul><li>Follow the 3-day route above at half speed</li><li>Add a morning food tour: dumplings, jianbing, soy milk</li><li>Sunset drinks with a Bund view</li></ul></div>
+      <div class="day"><div class="d">Day 3</div><h3>Water town escape</h3>
+        <ul><li>Day trip to Zhujiajiao: canals, stone bridges, tea houses</li><li>40 minutes by metro — a thousand years back in time</li><li>Back for a late dinner in the French Concession</li></ul></div>
+      <div class="day"><div class="d">Day 4–5</div><h3>Go deeper</h3>
+        <ul><li>Suzhou day trip: classical gardens &amp; silk (25 min by bullet train)</li><li>Propaganda Poster Art Centre &amp; local markets</li><li>Your pick: cooking class, acrobatics show, or one more skyline night</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="good-to-know">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="kicker">Good to know</span>
+      <h2>Before you book the flight</h2>
+      <p>The practical stuff, honestly told. Visiting China is easier than you think — with a little prep.</p>
+    </div>
+    <div class="tips">
+      <div class="tip reveal"><div class="icon">🛂</div><h3>Visa, simplified</h3>
+        <p><strong>54 countries</strong> (US, UK, Canada, Australia, most of Europe) get <strong>240-hour visa-free transit</strong> via Shanghai when flying on to a third country — that&rsquo;s 10 days, no consulate visit. Otherwise apply for a tourist (L) visa a few weeks ahead.</p></div>
+      <div class="tip reveal"><div class="icon">🌤️</div><h3>When to go</h3>
+        <p><strong>April–May and September–November</strong> are the sweet spots: mild, clear, photogenic. Summer is hot and humid; winter is damp and chilly but crowd-free.</p></div>
+      <div class="tip reveal"><div class="icon">🚇</div><h3>Getting around</h3>
+        <p>The metro has <strong>English signage everywhere</strong> and goes nearly everywhere. The <strong>Maglev</strong> hits the airport in 8 minutes. DiDi (China&rsquo;s Uber) works with foreign cards.</p></div>
+      <div class="tip reveal"><div class="icon">💳</div><h3>Paying for things</h3>
+        <p><strong>Alipay and WeChat Pay now link foreign bank cards</strong> — set them up before you fly. Carry some cash as backup; cards work in hotels and malls.</p></div>
+      <div class="tip reveal"><div class="icon">📱</div><h3>Staying connected</h3>
+        <p>Google, WhatsApp and Instagram are blocked. <strong>Download offline maps, a translation app and anything you need before arrival</strong>, and consider an eSIM or roaming plan.</p></div>
+      <div class="tip reveal"><div class="icon">🗣️</div><h3>Language &amp; manners</h3>
+        <p>English is limited outside hotels — a translation app goes a long way. Learn <strong>nǐ hǎo</strong> (hello) and <strong>xièxie</strong> (thank you); smiles are universal currency.</p></div>
+    </div>
+    <p class="fine reveal">Travel rules change. Visa policy, entry requirements and app availability were accurate at the time of writing — always double-check with your airline and local Chinese consulate before you travel.</p>
+  </div>
+</section>
+
+<section id="plan">
+  <div class="wrap">
+    <div class="cta reveal">
+      <span class="kicker">YourWay China Travel</span>
+      <h2>Ready to see Shanghai?</h2>
+      <p>Tell us when you&rsquo;re thinking of coming and what kind of traveler you are — we&rsquo;ll send back a free, personalized starter plan: where to stay, what to eat, and how to make the 240 hours count.</p>
+      <!-- TODO: replace with your real contact email before publishing -->
+      <a class="btn btn-gold" href="mailto:hello@yourwaychinatravel.com?subject=My%20Shanghai%20trip%20plan">Get my free starter plan</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top">YourWay <span>China Travel</span></a>
+    <div>© 2026 YourWay China Travel · A Shanghai travel showcase for curious travelers</div>
+  </div>
+</footer>
+<script>
+  // sticky nav
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), {passive:true});
+
+  // mobile menu
+  const burger = document.getElementById('burger'), links = document.getElementById('navLinks');
+  burger.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // itinerary tabs
+  document.querySelectorAll('.tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.itin').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.t).classList.add('active');
+    });
+  });
+
+  // scroll reveal
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), {threshold: .12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
